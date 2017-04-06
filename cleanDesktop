@@ -1,0 +1,49 @@
+#!/usr/bin/python
+import os
+from os import listdir
+from os.path import isfile, join
+import time
+import shutil
+now = time.time()
+
+mypath = 'Desktop/'
+
+
+def islink(filepath):
+    if filepath[-4:].lower() == '.lnk':
+        return True
+    return False
+
+
+def isurl(filepath):
+    if filepath[-4:].lower() == '.url':
+        return True
+    return False
+
+
+inactiveDir = mypath + 'Inactives/'
+if not os.path.exists(inactiveDir):
+    os.mkdir(inactiveDir)
+
+files = [f for f in listdir(mypath) if isfile(
+    join(mypath, f)) and f[0] != '.' and f[0] != '$']
+for fname in files:
+    path = mypath + fname
+    stat = os.stat(path)
+    if (now - stat.st_atime) / 3600 / 24 <= 14 or\
+       (now - stat.st_mtime) / 3600 / 24 <= 14 or\
+       (now - stat.st_ctime) / 3600 / 24 <= 14 or\
+       islink(path) or isurl(path):
+        pass
+    else:
+        if not os.path.exists(inactiveDir + fname):
+            shutil.move(path, inactiveDir + fname)
+        else:
+            i = 1
+            split = fname.split('.')
+            extension = split.pop()
+            name = '.'.join(split)
+            while (os.path.exists(inactiveDir + name + '_' + str(i) + '.' + extension)):
+                i += 1
+            newpath = inactiveDir + name + '_' + str(i) + '.' + extension
+            shutil.move(path, inactiveDir + fname)

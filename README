@@ -1,0 +1,16 @@
+
+Clean Your Desktop
+Move Inactive Files
+
+How to use it
+
+1. copy cleanDescktop to ~/
+2. chmode u+x cleanDescktop
+3. run ./cleanDescktop
+
+
+Detail :
+    It will loop your Desktop folder and move inactive files to a new folder whitch named 'Inactives'.
+    The inactive files is determined by the access time/ modify time /create time before two weeks ago(3600*24*14).
+    For Windows , it will skip shortcut files and url files（like a steam games shortcut).
+    For existed files, it will rename file name frome 'abc.def' to 'abc_1.def', 'abc_2.def', 'abc_3.def', etc.
