@@ -13,4 +13,4 @@ Detail :
     It will loop your Desktop folder and move inactive files to a new folder whitch named 'Inactives'.
     The inactive files is determined by the access time/ modify time /create time before two weeks ago(3600*24*14).
     For Windows , it will skip shortcut files and url files（like a steam games shortcut).
-    For existed files, it will rename file name frome 'abc.def' to 'abc_1.def', 'abc_2.def', 'abc_3.def', etc.
+    For existed files, it will rename file name from 'abc.def' to 'abc_1.def', 'abc_2.def', 'abc_3.def', etc.
